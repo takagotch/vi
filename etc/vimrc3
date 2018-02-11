@@ -1,0 +1,20 @@
+set number
+set ruler
+set list
+set whichwrap=h,l
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set guifont=MS_Gothic:h9
+set guifontwide=MS_Gothic:h9
+set helplang=ja
+nnoremap <Space>w :<C-u>w<CR>
+nnoremap <Space>q :<C-u>q<CR>
+nnoremap <Space>Q :<C-u>q!<CR>
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+nnoremap <Space>h ^
+nnoremap <Space>l $
+inoremap jk <Esc>
