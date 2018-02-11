@@ -37,7 +37,8 @@ ESC + qa,q1,q2...
 q
 :reg
 
-#
+#:set number
+
 #
 
 
