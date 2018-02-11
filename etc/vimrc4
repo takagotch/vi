@@ -1,0 +1,112 @@
+"オプション設定
+"number 行番号表示
+"incsearch hlserch ignorecase 検索周り
+"whichwrap 行末/文頭でのカーソル移動
+"hidden 隠れバッファ
+set number
+set ruler
+set list
+set listchars=tab:>-,trail:-,nbsp:%,extends:>,precedes:<,eol:<
+set incsearch
+set hlsearch
+set nowrap
+set showmatch
+set whichwrap=h,l
+set nowrapscan
+set ignorecase
+set smartcase
+set hidden
+set history=2000
+set autoindent
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set helplang=ja
+colorscheme desert
+ーーーーーーーーーーーーーーーーーー
+"半角文字の設定　フォント　文字サイズ
+set guifont=MS_Gothic:h9
+"全角文字の設定　フォント　文字サイズ
+set guifontwide=MS_Gothic:h9
+ーーーーーーーーーーーーーーーーーー
+"ファイル保存、ウィンドウクローズをキー
+nnoremap <Space>w :<C-u>w<CR>
+nnoremap <Space>q :<C-u>q<CR>
+nnoremap <Space>Q :<C-u>q!<CR>
+ーーーーーーーーーーーーーーーーーー
+":と；の入れ替え　コマンドラインモードに入るため
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+ーーーーーーーーーーーーーーーーーー
+"行頭/行末移動のキー
+nnoremap <Space>h ^
+nnoremap <Space>l $
+ーーーーーーーーーーーーーーーーーー
+"表示の行の移動　j、k→gj、gk
+nnoremap k gk
+nnoremap j gj
+vnoremap k gk
+vnoremap j gj
+nnoremap gk k
+nnoremap gj j
+vnoremap gk k
+vnoremap gj j
+ーーーーーーーーーーーーーーーーーー
+"カーソル位置の単語で前方検索
+nnoremap <Space>/ *<C-o>
+nnoremap g<Space>/ g*<C-o>
+ーーーーーーーーーーーーーーーーーー
+"n、Nは、最後の/か?を繰り返します。/で検索した場合と、?で検索した場合で、 nとNで移動する方向が異なるのが不便でした。 このため、/と?のどちらで検索した場合でも、nで前方検索 Nで後方検索するよう設定しています。
+nnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
+nnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
+vnoremap <expr> n <SID>search_forward_p() ? 'nzv' : 'Nzv'
+vnoremap <expr> N <SID>search_forward_p() ? 'Nzv' : 'nzv'
+function! s:search_forward_p()
+  return exists('v:searchforward') ? v:searchforward : 1
+endfunction
+ーーーーーーーーーーーーーーーーーー
+"インサートモードに入らずに、カーソル行の下もしくは上に空行を挿入します。 countにも対応しているので、10<Space>oで10行挿入できます。
+nnoremap <Space>o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+ーーーーーーーーーーーーーーーーーー
+"タブ関連
+nnoremap <silent> tt :<C-u>tabe<CR>
+nnoremap <C-p> gT
+nnoremap <C-n> gt
+ーーーーーーーーーーーーーーーーーー
+"検索時にマッチするテキストが強調される検索テキストの強調表示は便利なのですが、検索が終わった後は 強調表示をオフにしたいので、nohlsearchコマンドを使います。nohlsearchコマンドはちょいちょい使うため、<Esc><Esc> にマッピングしています。
+nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
+ーーーーーーーーーーーーーーーーーー
+"危険なキー　ファイルを保存/せず終了　無効化=Nop
+"Exモードに切り替え　（テキスト整形gp）
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+nnoremap Q gq
+ーーーーーーーーーーーーーーーーーー
+"テキストオブジェクト
+onoremap aa a>
+onoremap ia i>
+onoremap ar a]
+onoremap ir i]
+onoremap ad a"
+onoremap id i"
+ーーーーーーーーーーーーーーーーーー
+"ノーマルモードに戻る　jk
+inoremap jk <Esc>
+ーーーーーーーーーーーーーーーーーー
+"置換コマンド　gs
+nnoremap gs :<C-u>%s///g<Left><Left><Left>
+vnoremap gs :s///g<Left><Left><Left>
+ーーーーーーーーーーーーーーーーーー
+"コマンドラインモード　移動　（Emacs風）
+cnoremap <C-f> <Right>
+コマンドライン履歴を一つ進む
+cnoremap <C-b> <Left>
+カーソルの下の文字を削除
+cnoremap <C-a> <C-b>
+
+cnoremap <C-e> <C-e>
+cnoremap <C-u> <C-e><C-u>
+cnoremap <C-v> <C-f>a
