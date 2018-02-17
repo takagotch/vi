@@ -1,5 +1,5 @@
 
-#vimrc
+# vimrc
 
 #:.,XX
 #delete
@@ -39,7 +39,9 @@ q
 
 #:set number
 
-#
+# http://vim-jp.org/vimdoc-ja/
 
+http://vim-jp.org/
+http://www.vim.org/
 
 
