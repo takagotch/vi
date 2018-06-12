@@ -47,6 +47,7 @@ q
 #### http://vim-jp.org/vimdoc-ja/
 
 http://vim-jp.org/
+
 http://www.vim.org/
 
 
